@@ -47,11 +47,6 @@ Material design component library with [material-ui](https://material-ui.com/).
 
 _WIP_
 
-### Articles
-
-* https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial
-* https://medium.com/firebase-developers/how-to-setup-firebase-authentication-with-react-in-5-minutes-maybe-10-bb8bb53e8834
-
 ## Getting started
 
 ```bash
@@ -62,6 +57,13 @@ nmpm start
 
 ## Deploying
 
+See https://create-react-app.dev/docs/deployment/#firebase
+
 ```bash
 firebase deploy
 ```
+
+### Articles
+
+* https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial
+* https://medium.com/firebase-developers/how-to-setup-firebase-authentication-with-react-in-5-minutes-maybe-10-bb8bb53e8834

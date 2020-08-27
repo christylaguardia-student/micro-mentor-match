@@ -63,8 +63,3 @@ See https://create-react-app.dev/docs/deployment/#firebase
 npm run build
 firebase deploy
 ```
-
-### Articles
-
-* https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial
-* https://medium.com/firebase-developers/how-to-setup-firebase-authentication-with-react-in-5-minutes-maybe-10-bb8bb53e8834

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -37,7 +37,7 @@ export const Navigation = () => {
           </Typography>
           <nav>
             {Object.entries(ROUTES).map(([name, path]) => (
-              <Button component={Link} to={path} variant="button" color="textPrimary" className={classes.link}>
+              <Button key={name} component={Link} to={path} className={classes.link}>
                 {name}
               </Button>
             ))}

@@ -1,5 +1,8 @@
 # Micro-mentorship + skill share platform
+
 _ClassPass Hackathon - August 27, 2020_
+
+[Production](https://micro-mentor-match.web.app)
 
 ## About
 
@@ -26,11 +29,13 @@ _Stretch goal_: Allow for crowdsourcing an answer to question by asking the comm
 
 * Christy is a recent coding boot camp grad that is interviewing with companies and keeps getting suck on coding questions that involve recursion
 * Julian just started a new job a ClassPass and would like to learn more about how to get the most out of his first 90 days
+* Rohan has an idea for a startup but doesn't know where to start
 * Jorge is an experienced Java developer and manager and has irregular and small amounts of times he's available to mentor
 * Alex is an experienced web developer and is interested in exploring lateral fields like ux, ui or graphic design
-* Conner is a p
+* Conner is a product manager with startup experience and lots of connections
 * Karen is an engineering director that would like to give advice to other leaders on how to build teams
-* Jacob is a jQuery expert looking to make jQuery comeback
+* Sam is would like to strengthen his leadership skills by mentoring others
+* Jacob is working on a project he'd like to find a collaborator
 
 ## Tech stack
 
@@ -52,4 +57,11 @@ _WIP_
 ```bash
 npm install -g firebase-tools
 firebase login
+nmpm start
+```
+
+## Deploying
+
+```bash
+firebase deploy
 ```

@@ -60,6 +60,7 @@ nmpm start
 See https://create-react-app.dev/docs/deployment/#firebase
 
 ```bash
+npm run build
 firebase deploy
 ```
 

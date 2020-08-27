@@ -1,68 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Micro-mentorship + skill share platform
+_ClassPass Hackathon - August 27, 2020_
 
-## Available Scripts
+## About
 
-In the project directory, you can run:
+Get matched to one, or possibly many subject matter experts for a short term and skill-specific mentorships. Signup to be a mentor based on skills you have to offer.
 
-### `yarn start`
+_Stretch goal_: Allow for crowdsourcing an answer to question by asking the community.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Inspiration
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+[MicroMentor](https://www.micromentor.org/)
+[MentorCruise](https://mentorcruise.com/)
+[Academic Micro-Mentoring](https://smhs.gwu.edu/cfe/career-development/mentoring-resources/micro-mentoring)
 
-### `yarn test`
+## Articles on mentorship
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[The Key To Diversity And Inclusion Is Mentorship](https://www.forbes.com/sites/janicegassam/2019/09/26/the-key-to-diversity-and-inclusion-is-mentorship/#59143e057fbd)
+[Engage a Mentor with a Short-Term Project](https://hbr.org/2014/02/engage-a-mentor-with-a-short-term-project)
+[CultureAmp - Mentorships help build trusting relationships and foster belonging in the workplace](https://hello.cultureamp.com/hubfs/1703-Belonging/Culture-Amp_6-ways-to-foster-belonging.pdf)
+[Tips for micro-mentoring](https://www.geteverwise.com/mentoring/in-for-the-short-haul-5-tips-for-micro-mentoring/)
+[Micro-Mentoring: Identify Your "Mentor Moments"](https://www.linkedin.com/pulse/micro-mentoring-identify-your-mentor-moments-cecilia-sepp-cae)
+[40 Questions to ask a mentor](https://www.forbes.com/sites/jomiller/2018/03/25/40-questions-to-ask-a-mentor/#1c735c40261b)
 
-### `yarn build`
+## Use Cases
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Christy is a recent coding boot camp grad that is interviewing with companies and keeps getting suck on coding questions that involve recursion
+* Julian just started a new job a ClassPass and would like to learn more about how to get the most out of his first 90 days
+* Jorge is an experienced Java developer and manager and has irregular and small amounts of times he's available to mentor
+* Alex is an experienced web developer and is interested in exploring lateral fields like ux, ui or graphic design
+* Conner is a p
+* Karen is an engineering director that would like to give advice to other leaders on how to build teams
+* Jacob is a jQuery expert looking to make jQuery comeback
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Tech stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### `yarn eject`
+Serverless web app with [Firebase](https://firebase.google.com/).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+_WIP_
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Articles
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+* https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial
+* https://medium.com/firebase-developers/how-to-setup-firebase-authentication-with-react-in-5-minutes-maybe-10-bb8bb53e8834

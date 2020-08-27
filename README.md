@@ -38,9 +38,18 @@ Bootstrapped with [Create React App](https://github.com/facebook/create-react-ap
 
 Serverless web app with [Firebase](https://firebase.google.com/).
 
+Material design component library with [material-ui](https://material-ui.com/).
+
 _WIP_
 
 ### Articles
 
 * https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial
 * https://medium.com/firebase-developers/how-to-setup-firebase-authentication-with-react-in-5-minutes-maybe-10-bb8bb53e8834
+
+## Getting started
+
+```bash
+npm install -g firebase-tools
+firebase login
+```

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { BrowserRouter as Router } from 'react-router-dom';
 // import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 // eslint-disable-next-line no-unused-vars
-import { firebaseApp, firebaseAppAuth, firebaseConfig } from '../../services/firebase/config';
+// import { firebaseApp, firebaseAppAuth, firebaseConfig } from '../../services/firebase/config';
 import { login as loginAction, error as errorAction } from './actions';
 
 import CssBaseline from '@material-ui/core/CssBaseline';

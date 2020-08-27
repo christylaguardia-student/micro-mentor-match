@@ -1,11 +1,11 @@
-export const LOADING = 'LOADING';
-export const LOADED = 'LOADED';
-export const ERROR_ADD = 'ERROR_ADD';
-export const ERROR_REMOVE = 'ERROR_REMOVE';
-export const LOGOUT = 'LOGOUT';
-export const LOGIN = 'LOGIN';
-export const RESET_STORE = 'RESET_STORE';
-export const FETCHED_USER = 'FETCHED_USER';
+export const LOADING = "LOADING";
+export const LOADED = "LOADED";
+export const ERROR_ADD = "ERROR_ADD";
+export const ERROR_REMOVE = "ERROR_REMOVE";
+export const LOGOUT = "LOGOUT";
+export const LOGIN = "LOGIN";
+export const RESET_STORE = "RESET_STORE";
+export const FETCHED_USER = "FETCHED_USER";
 
 export function loading(state = false, { type }) {
   switch (type) {

@@ -1,28 +1,28 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import { FirebaseContext } from '../../components/Firebase';
-import Hero from '../../components/Hero';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import { FirebaseContext } from "../../components/Firebase";
+import Hero from "../../components/Hero";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -31,16 +31,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function writeUserData(firebase, userId, data) {
-  firebase.database().ref('users/' + userId).set(data);
+  firebase
+    .database()
+    .ref("users/" + userId)
+    .set(data);
 }
 
 export const Signup = () => {
   const classes = useStyles();
-  const handleSubmit = firebase => event => {
+  const handleSubmit = (firebase) => (event) => {
     event.preventDefault();
-    alert('sumitted!')
+    alert("sumitted!");
     // writeUserData(firebase, userId, data)
-  }
+  };
 
   return (
     <>
@@ -48,9 +51,13 @@ export const Signup = () => {
       <Container component="main" maxWidth="xs">
         <div className={classes.paper}>
           <FirebaseContext.Consumer>
-            {firebase => {
+            {(firebase) => {
               return (
-                <form className={classes.form} noValidate onSubmit={handleSubmit(firebase)}>
+                <form
+                  className={classes.form}
+                  noValidate
+                  onSubmit={handleSubmit(firebase)}
+                >
                   <Grid container spacing={2}>
                     <Grid item xs={12} sm={6}>
                       <TextField
@@ -86,21 +93,11 @@ export const Signup = () => {
                         autoComplete="email"
                       />
                     </Grid>
-                    {/* <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                />
-              </Grid> */}
                     <Grid item xs={12}>
                       <FormControlLabel
-                        control={<Checkbox value="allowExtraEmails" color="primary" />}
+                        control={
+                          <Checkbox value="allowExtraEmails" color="primary" />
+                        }
                         label="I agree to some terms and conditions"
                       />
                     </Grid>
@@ -113,16 +110,15 @@ export const Signup = () => {
                     className={classes.submit}
                   >
                     Sign Up
-          </Button>
+                  </Button>
                   <Grid container justify="flex-end">
                     <Grid item>
                       <Link href="#" variant="body2">
                         Already have an account? Sign in
-              </Link>
+                      </Link>
                     </Grid>
                   </Grid>
                 </form>
-
               );
             }}
           </FirebaseContext.Consumer>
@@ -130,4 +126,4 @@ export const Signup = () => {
       </Container>
     </>
   );
-}
+};

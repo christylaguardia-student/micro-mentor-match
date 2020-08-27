@@ -1,18 +1,11 @@
-import React from 'react';
-import { connect } from "react-redux";
-// import firebase from 'firebase';
-import { BrowserRouter as Router } from 'react-router-dom';
-// import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-// eslint-disable-next-line no-unused-vars
-// import { firebaseApp, firebaseAppAuth, firebaseConfig } from '../../services/firebase/config';
-import { login as loginAction, error as errorAction } from './actions';
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
 
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-
-import { Navigation } from './Navigation';
-import { Routes } from './Routes';
+import { Navigation } from "./Navigation";
+import { Routes } from "./Routes";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -28,67 +21,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// TODO: this is not working
-// firebaseAppAuth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
-//   .then(function () {
-//     var provider = new firebase.auth.GoogleAuthProvider();
-//     // In memory persistence will be applied to the signed in Google user
-//     // even though the persistence was set to 'none' and a page redirect
-//     // occurred.
-//     return firebase.auth().signInWithRedirect(provider);
-
-//   })
-//   .catch(function (error) {
-//     // Handle Errors here.
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//   });
-
-// firebaseAppAuth.signInWithCustomToken(token).catch(function(error) {
-//   // Handle Errors here.
-//   var errorCode = error.code;
-//   var errorMessage = error.message;
-//   // ...
-// });
-
-// console.log('current user', firebaseAppAuth.currentUser);
-
-const App = props => {
+const App = (props) => {
   const classes = useStyles();
-  const { login, loading, user } = props;
-  // const isAuthenticated = user ? !!user?.credential?.idToken : false;
-
-  if (loading) {
-    return (
-      <p>Loading...</p>
-    );
-  }
-
-  // const uiConfig = {
-  //   callbacks: {
-  //     signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-  //       // User successfully signed in.
-  //       // Return type determines whether we continue the redirect automatically
-  //       // or whether we leave that to developer to handle.
-  //       localStorage.setItem('micro-mentor-user', authResult)
-  //       login({ authResult });
-  //       return false;
-  //     },
-  //   },
-  //   // Popup signin flow rather than redirect flow.
-  //   // signInFlow: 'popup',
-  //   // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-  //   // signInSuccessUrl: '/signedIn',
-  //   // We will display Google and Facebook as auth providers.
-  //   signInOptions: [
-  //     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-  //   ]
-  // };
 
   return (
-    // TODO: auth
-    // <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-
     <React.Fragment>
       <CssBaseline />
       <Router>
@@ -102,20 +38,10 @@ const App = props => {
             </Container>
           </div>
         </main>
-        <footer className={classes.footer}>
-          {/* <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Something here to give the footer a purpose!
-        </Typography> */}
-        </footer>
+        <footer className={classes.footer}></footer>
       </Router>
     </React.Fragment>
   );
-}
+};
 
-export default connect(
-  ({ loading, user }) => ({ loading, user }),
-  { login: loginAction, error: errorAction },
-)(App);
+export default App;

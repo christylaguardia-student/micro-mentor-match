@@ -16,7 +16,7 @@ export const Home = () => {
     <Container maxWidth="sm">
       <Hero
         title="Micro-mentorships"
-        subtitle="Get matched to one, or possibly many subject matter experts for a short term and skill-specific mentorships. Join to be a mentor based on skills you have to offer."
+        subtitle="Get matched to a mentor for a short term and skill focused mentorships. Join to be a mentor based on skills you have to offer."
       />
       <Signup />
     </Container>

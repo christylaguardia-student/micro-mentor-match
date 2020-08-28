@@ -62,12 +62,12 @@ Other ideas...
 
 Story  | Match
 --  | --
-Christy is a recent coding boot camp grad that is interviewing with companies and keeps getting suck on coding questions that involve recursion | Miles, since he has experience with entry-level coding interviewing
+Charlie is a recent coding boot camp grad that is interviewing with companies and keeps getting stuck on coding questions that involve recursion | Miles, since he has experience with entry-level coding interviewing
 Julian just started a new job a ClassPass and would like to learn more about how to get the most out of his first 90 days | Petra since she works in HR and has developed onboarding programs
 Rohan has an idea for a startup but doesn't know where to start | Conner because he works for a startup
 Jorge is an experienced Java developer and manager and has irregular and small amounts of times he's available to mentor | Joey since she would like to chat about Java projects and can only do so via email
 Alex is an experienced web developer and is interested in exploring lateral fields like ux, ui or graphic design | George is offering to teach a 1 hour session on the difference between ux, ui or graphic design
-Conner is a product manager with startup experience and lots of connections | Christy since she is trying to get hired
+Conner is a product manager with startup experience and lots of connections | Charlie since she is trying to get hired
 Karen is an engineering director that would like to give advice to other leaders on how to build teams | Sam since he's a new engineering manger and his current company doesn't have any formal training
 Jacob is working on a project he'd like to find a collaborator that can help get him un-stuck | Sam is would like to strengthen his leadership skills by mentoring others
 
@@ -96,7 +96,7 @@ Material design component library with [material-ui](https://material-ui.com/).
 ```bash
 npm install -g firebase-tools
 firebase login
-nmpm start
+npm start
 ```
 
 ## Deploying

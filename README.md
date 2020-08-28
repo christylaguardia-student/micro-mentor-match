@@ -25,7 +25,7 @@ _Stretch goal_: Allow for crowdsourcing an answer to question by asking the comm
 - [Micro-Mentoring: Identify Your "Mentor Moments"](https://www.linkedin.com/pulse/micro-mentoring-identify-your-mentor-moments-cecilia-sepp-cae)
 - [40 Questions to ask a mentor](https://www.forbes.com/sites/jomiller/2018/03/25/40-questions-to-ask-a-mentor/#1c735c40261b)
 
-## Use Cases
+## User Stories
 
 - Christy is a recent coding boot camp grad that is interviewing with companies and keeps getting suck on coding questions that involve recursion
 - Julian just started a new job a ClassPass and would like to learn more about how to get the most out of his first 90 days

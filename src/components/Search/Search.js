@@ -5,14 +5,25 @@ import { compose } from 'recompose';
 
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import FirebaseContext from "../Firebase/context";
 
+import { getUsers, addError } from '../../store/actions';
 import { withFirebase } from '../Firebase/context';
-import data from '../../data';
 
-export const Search = ({ firebase }) => {
-  // const industries = firebase.industries().once('value').then(snapshot => snapshot.val());
-  console.log(data);
+export const Search = ({ firebase, handleSuccess, handleError }) => {
+
+  // const fetchData = () => {
+  const userId = '123'; //firebase.currentUserId()
+  console.log({ userId })
+  firebase.users().once('value').then(function (snapshot) {
+    const users = snapshot.val()
+    console.log(users)
+    handleSuccess({ users });
+  })
+    .catch(error => {
+      console.log({ error });
+      handleError({ error });
+    });
+  // }
 
   return (
     <Container maxWidth="sm">
@@ -25,11 +36,6 @@ export const Search = ({ firebase }) => {
       >
         Search
       </Typography>
-      <FirebaseContext.Consumer>
-        {(firebase) => {
-          return <div>I've access to Firebase and render something.</div>;
-        }}
-      </FirebaseContext.Consumer>
     </Container>
   );
 };
@@ -38,7 +44,10 @@ const mapStateToProps = state => ({
   isAuthenticated: state.user?.isAuthenticated,
 });
 
-const mapDispatchToProps = null;
+const mapDispatchToProps = {
+  handleSuccess: getUsers,
+  handleError: addError
+};
 
 export default compose(
   withRouter,

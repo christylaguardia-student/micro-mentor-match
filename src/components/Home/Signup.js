@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
 import { compose } from 'recompose';
 
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { createUserSuccess, addError } from '../../store/actions';
 import { withFirebase } from '../Firebase/context';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,23 +21,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const JoinForm = ({ firebase }) => {
+export const Signup = ({ firebase, createUserSuccess, addError }) => {
   const classes = useStyles();
-  const INITIAL_STATE = {
-    email: '',
+  let history = useHistory();
+
+  const [state, setState] = React.useState({
+    email: 'christinelaguardia@gmail.com',
     password: '',
+  });
+  const { email, password } = state;
+
+  const handleChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.value });
   };
-  const [email, setEmail] = useState(INITIAL_STATE.email);
-  const [password, setPassword] = useState(INITIAL_STATE.passwordOne);
+
+  const handleCheckboxChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
 
   const handleSubmit = () => {
-    console.log({ email, password })
     firebase.doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
         console.log(authUser)
+        createUserSuccess({ authUser });
+        history.replace('/profile');
       })
       .catch(error => {
         console.log({ error });
+        addError({ error });
       });
   }
 
@@ -52,29 +62,6 @@ export const JoinForm = ({ firebase }) => {
       }}
     >
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            autoComplete="fname"
-            name="firstName"
-            variant="outlined"
-            required
-            fullWidth
-            id="firstName"
-            label="First Name"
-            autoFocus
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            variant="outlined"
-            required
-            fullWidth
-            id="lastName"
-            label="Last Name"
-            name="lastName"
-            autoComplete="lname"
-          />
-        </Grid>
         <Grid item xs={12}>
           <TextField
             variant="outlined"
@@ -84,7 +71,7 @@ export const JoinForm = ({ firebase }) => {
             label="Email Address"
             name="email"
             autoComplete="email"
-            onChange={e => setEmail(e.target.value)}
+            onChange={handleChange}
           />
         </Grid>
         <Grid item xs={12}>
@@ -97,15 +84,7 @@ export const JoinForm = ({ firebase }) => {
             name="password"
             autoComplete="password"
             type="password"
-            onChange={e => setPassword(e.target.value)}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <FormControlLabel
-            control={
-              <Checkbox value="allowExtraEmails" color="primary" />
-            }
-            label="I agree to some terms and conditions"
+            onChange={handleChange}
           />
         </Grid>
       </Grid>
@@ -116,9 +95,9 @@ export const JoinForm = ({ firebase }) => {
         color="primary"
         className={classes.submit}
       >
-        Join
+        Sign up
       </Button>
-    </form>
+    </form >
   );
 };
 
@@ -126,10 +105,13 @@ const mapStateToProps = state => ({
   isAuthenticated: state.user?.isAuthenticated,
 });
 
-const mapDispatchToProps = null;
+const mapDispatchToProps = {
+  createUserSuccess,
+  addError,
+};
 
 export default compose(
   withRouter,
   withFirebase,
   connect(mapStateToProps, mapDispatchToProps)
-)(JoinForm);
+)(Signup);

@@ -52,7 +52,7 @@ class Firebase {
   doPasswordUpdate = password =>
     this.auth.currentUser.updatePassword(password);
 
-  // *** Merge Auth and DB User API *** //
+  // *** Merge Auth acurrend DB User API *** //
 
   onAuthUserListener = (next, fallback) =>
     this.auth.onAuthStateChanged(authUser => {
@@ -82,6 +82,8 @@ class Firebase {
         fallback();
       }
     });
+
+  // currentUserId = () => this.auth?.currentUser.uid;
 
   // *** User API ***
 

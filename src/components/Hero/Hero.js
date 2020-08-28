@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 
 export const Hero = ({ title, subtitle }) => (
-  <Container maxWidth="sm">
+  <>
     <Typography
       component="h1"
       variant="h2"
@@ -16,5 +16,5 @@ export const Hero = ({ title, subtitle }) => (
     <Typography variant="h5" align="center" color="textSecondary" paragraph>
       {subtitle}
     </Typography>
-  </Container>
+  </>
 );

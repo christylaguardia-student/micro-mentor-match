@@ -1,35 +1,55 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import { withAuthentication } from '../Session';
 import Home from "../Home";
-import LoginForm from "../Login/LoginForm"; // todo: remove useless container
-import Join from "../Join/JoinForm"; // todo: remove useless container
-import Search from "../Search/Search"; // todo: remove useless container
+import Profile from "../Profile";
+import Login from "../Login/Login";
+import Search from "../Search";
 
-// these are nav routes
 export const ROUTES = {
-  HOME: "/",
+  HOME: "/", // aka "Join"
   LOGIN: "/login",
   LOGOUT: "/logout",
-  JOIN: "/join",
+  PROFILE: "/profile",
   SEARCH: "/search",
 };
 
+// A wrapper for <Route> that redirects to the login
+// screen if you're not yet authenticated.
+// const PrivateRoute = ({ isAuthenticated, children, ...rest }) => {
+//   return (
+//     <Route
+//       {...rest}
+//       render={({ location }) =>
+//         isAuthenticated ? (
+//           children
+//         ) : (
+//             <Redirect
+//               to={{
+//                 pathname: ROUTES.LOGIN,
+//                 state: { from: location }
+//               }}
+//             />
+//           )
+//       }
+//     />
+//   );
+// }
+
+// TODO: setup auth redirects
 export const Routes = ({ isAuthenticated }) => (
   <Switch>
     <Route exact path={ROUTES.HOME}>
       <Home />
     </Route>
-    {isAuthenticated ? (
-      <Route path={ROUTES.JOIN}>
-        <Join />
-      </Route>
-    ) : (
-        <Route path={ROUTES.LOGIN}>
-          <LoginForm />
-        </Route>
-      )}
+    <Route path={ROUTES.LOGIN}>
+      <Login />
+    </Route>
+    {/* TODO: Private routes */}
+    <Route path={ROUTES.PROFILE}>
+      <Profile />
+    </Route>
     <Route path={ROUTES.SEARCH}>
       <Search />
     </Route>

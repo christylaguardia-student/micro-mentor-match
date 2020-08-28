@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+import { connect } from "react-redux";
+import { compose } from 'recompose';
 
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 
-import { AuthUserContext } from '../Session'
 import { withFirebase } from '../Firebase';
 import { Navigation } from "./Navigation";
 import Routes from "./Routes";
 
 const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
   content: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6),
@@ -24,37 +21,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const App = ({ firebase }) => {
+export const App = ({ firebase, isAuthenticated, user }) => {
   const classes = useStyles();
-  // TODO: this doesn't work
-  // const [authUser, setAuthUser] = useState(null);
-  // const isAuthenticated = !!authUser;
-
-  // useEffect(() => {
-  //   if (firebase) {
-  //     firebase.auth.onAuthStateChanged(newAuthUser => {
-  //       console.log('onAuthStateChanged...', newAuthUser)
-  //       newAuthUser
-  //         ? setAuthUser(newAuthUser)
-  //         : setAuthUser(null);
-  //     });
-  //   }
-  // })
 
   return (
     <React.Fragment>
       <CssBaseline />
       <Router>
         <header>
-          {/* <AuthUserContext.Provider value={authUser}> */}
-          <Navigation />
-          {/* </AuthUserContext.Provider> */}
+          <Navigation isAuthenticated={isAuthenticated} handleLogout={firebase.doSignOut} />
         </header>
         <main>
           <div className={classes.content}>
-            <Container maxWidth="sm">
-              <Routes />
-            </Container>
+            <Routes />
           </div>
         </main>
         <footer className={classes.footer}></footer>
@@ -63,6 +42,12 @@ export const App = ({ firebase }) => {
   );
 };
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.user?.isAuthenticated,
+  user: state.user,
+});
 
-export default withFirebase(App);
-
+export default compose(
+  withFirebase,
+  connect(mapStateToProps, null)
+)(App);

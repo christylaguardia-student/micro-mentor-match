@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { loading, errors, user, RESET_STORE } from "./reducers";
+import { loading, errors, user, users, RESET_STORE } from "./reducers";
 
 /* Import reducers */
 
@@ -7,6 +7,7 @@ const appReducer = combineReducers({
   loading,
   errors,
   user,
+  users,
   /* Add reducers */
 });
 

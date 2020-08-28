@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import Hero from "../../components/Hero";
+import Hero from "../Hero";
 import { ROUTES } from "../App/Routes";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +20,7 @@ export const Home = () => {
     <>
       <Hero
         title="Micro-mentorships"
-        subtitle="Get matched to one, or possibly many subject matter experts for a short term and skill-specific mentorships. Signup to be a mentor based on skills you have to offer."
+        subtitle="Get matched to one, or possibly many subject matter experts for a short term and skill-specific mentorships. Join to be a mentor based on skills you have to offer."
       />
       <Container maxWidth="sm">
         <div className={classes.buttons}>

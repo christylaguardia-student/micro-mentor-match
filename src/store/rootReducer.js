@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { loading, errors, user, RESET_STORE } from "../containers/App/reducers";
+import { loading, errors, user, RESET_STORE } from "./reducers";
 
 /* Import reducers */
 

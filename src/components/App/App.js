@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
+import { AuthUserContext } from '../Session'
+import { withFirebase } from '../Firebase';
 import { Navigation } from "./Navigation";
-import { Routes } from "./Routes";
+import Routes from "./Routes";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -21,15 +24,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const App = (props) => {
+export const App = ({ firebase }) => {
   const classes = useStyles();
+  // TODO: this doesn't work
+  // const [authUser, setAuthUser] = useState(null);
+  // const isAuthenticated = !!authUser;
+
+  // useEffect(() => {
+  //   if (firebase) {
+  //     firebase.auth.onAuthStateChanged(newAuthUser => {
+  //       console.log('onAuthStateChanged...', newAuthUser)
+  //       newAuthUser
+  //         ? setAuthUser(newAuthUser)
+  //         : setAuthUser(null);
+  //     });
+  //   }
+  // })
 
   return (
     <React.Fragment>
       <CssBaseline />
       <Router>
         <header>
+          {/* <AuthUserContext.Provider value={authUser}> */}
           <Navigation />
+          {/* </AuthUserContext.Provider> */}
         </header>
         <main>
           <div className={classes.content}>
@@ -44,4 +63,6 @@ const App = (props) => {
   );
 };
 
-export default App;
+
+export default withFirebase(App);
+

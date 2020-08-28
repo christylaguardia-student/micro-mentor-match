@@ -1,4 +1,4 @@
-import { LOADING, LOADED } from "../containers/App/reducers";
+import { LOADING, LOADED } from "./reducers";
 
 const isPromise = (val) => {
   return val && typeof val.then === "function";

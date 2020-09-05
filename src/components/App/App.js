@@ -4,40 +4,33 @@ import { connect } from "react-redux";
 import { compose } from 'recompose';
 
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { makeStyles } from "@material-ui/core/styles";
+import { ThemeProvider } from '@material-ui/core/styles';
 
 import { withFirebase } from '../Firebase';
+import { DrawerMenu } from "./DrawerMenu";
 import { Navigation } from "./Navigation";
-import Routes from "./Routes";
+import { Views } from "./Views";
 
-const useStyles = makeStyles((theme) => ({
-  // content: {
-  //   backgroundColor: theme.palette.background.paper,
-  //   padding: theme.spacing(8, 0, 6),
-  // },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-}));
+import theme from "./theme";
 
 export const App = ({ firebase, isAuthenticated, user }) => {
-  const classes = useStyles();
 
   return (
     <React.Fragment>
       <CssBaseline />
+
       <Router>
         <header>
           <Navigation isAuthenticated={isAuthenticated} handleLogout={firebase.doSignOut} />
         </header>
+        <DrawerMenu />
         <main>
-          <Routes />
-          {/* <div className={classes.content}>
-          </div> */}
+          <ThemeProvider theme={theme}>
+            <Views />
+          </ThemeProvider>
         </main>
-        <footer className={classes.footer}></footer>
       </Router>
+
     </React.Fragment>
   );
 };

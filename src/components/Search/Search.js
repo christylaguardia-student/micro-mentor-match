@@ -11,9 +11,10 @@ import Tab from '@material-ui/core/Tab';
 import { getUsers, addError } from '../../store/actions';
 import { withFirebase } from '../Firebase/context';
 import { TabPanel } from './TabPanel';
-import { MentorshipList } from './MentorshipList';
-import { MentorList } from './MentorList';
-import { QuestionsList } from './QuestionsList';
+
+import { MentorshipList } from '../Mentorships/MentorshipList';
+import { MentorList } from '../Mentors/MentorList';
+import { QuestionsList } from '../Questions/QuestionsList';
 
 import mentorshipsData from '../..//fakeData/generated/mentorships.json';
 import questionsData from '../..//fakeData/generated/questions.json';

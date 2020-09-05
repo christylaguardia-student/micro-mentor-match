@@ -23,8 +23,9 @@ export function MentorshipChips({ categories }) {
     return null;
   }
 
-  const chipData = categories.map(category => ({
-    icon: TagFacesIcon,
+  const chipData = categories.map((category, index) => ({
+    id: index + 1,
+    // icon: TagFacesIcon,
     label: category
   }));
 
@@ -32,7 +33,8 @@ export function MentorshipChips({ categories }) {
     <div className={classes.root}>
       {chipData.map((data) => (
         <Chip
-          icon={data.icon}
+          key={data.id}
+          icon={<TagFacesIcon />}
           label={data.label}
           className={classes.chip}
         />

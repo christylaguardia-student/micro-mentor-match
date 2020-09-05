@@ -20,11 +20,18 @@ import Button from "@material-ui/core/Button";
 
 import { updateUserSuccess, addError } from '../../store/actions';
 import { withFirebase } from '../Firebase/context';
+import Hero from '../Hero'
 import { ComboBox } from './ComboBox';
+
 import data from '../../data';
 
-
 const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: theme.spacing(2, 0),
+  },
+  container: {
+    flexGrow: 1,
+  },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
@@ -87,124 +94,120 @@ export const Profile = ({ firebase, handleSuccess, handleError }) => {
   }
 
   return (
-    <Container maxWidth="sm">
-      <Typography
-        component="h1"
-        variant="h2"
-        align="center"
-        color="textPrimary"
-        gutterBottom
-      >
-        Complete your profile
-      </Typography>
+    <div className={classes.root}>
+      <Hero
+        title="Profile"
+      />
 
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            autoComplete="fname"
-            name="firstName"
-            variant="outlined"
-            required
-            fullWidth
-            id="firstName"
-            value={firstName}
-            label="First Name"
-            autoFocus
-            onChange={handleChange}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            variant="outlined"
-            required
-            fullWidth
-            id="lastName"
-            value={lastName}
-            label="Last Name"
-            name="lastName"
-            autoComplete="lname"
-            onChange={handleChange}
-          />
-        </Grid>
+      <Container maxWidth="md" className={classes.container}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              autoComplete="fname"
+              name="firstName"
+              variant="outlined"
+              required
+              fullWidth
+              id="firstName"
+              value={firstName}
+              label="First Name"
+              autoFocus
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              id="lastName"
+              value={lastName}
+              label="Last Name"
+              name="lastName"
+              autoComplete="lname"
+              onChange={handleChange}
+            />
+          </Grid>
 
-        <Grid item xs={12} sm={6}>
-          <FormControl required component="fieldset">
-            <FormLabel component="legend">Gender</FormLabel>
-            <RadioGroup aria-label="gender" name="gender1" value={gender} onChange={handleRadioChange}>
-              <FormControlLabel value="female" control={<Radio />} label="Female" />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
-              <FormControlLabel value="other" control={<Radio />} label="Other" />
-            </RadioGroup>
-          </FormControl>
-        </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormControl required component="fieldset">
+              <FormLabel component="legend">Gender</FormLabel>
+              <RadioGroup aria-label="gender" name="gender1" value={gender} onChange={handleRadioChange}>
+                <FormControlLabel value="female" control={<Radio />} label="Female" />
+                <FormControlLabel value="male" control={<Radio />} label="Male" />
+                <FormControlLabel value="other" control={<Radio />} label="Other" />
+              </RadioGroup>
+            </FormControl>
+          </Grid>
 
-        <Grid item xs={12} sm={6}>
-          <FormControl required component="fieldset">
-            <FormLabel component="legend">What are you looking for? (Check all that apply)</FormLabel>
-            <FormGroup>
-              <FormControlLabel
-                control={<Checkbox checked={mentorshipTypes.includes("mentor")} onChange={handleCheckboxChange} name="mentor" />}
-                label="Get matched with a mentor"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={mentorshipTypes.includes("skill")} onChange={handleCheckboxChange} name="skill" />}
-                label="Learn a skill"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={mentorshipTypes.includes("project")} onChange={handleCheckboxChange} name="project" />}
-                label="Work on a project"
-              />
-              <FormControlLabel
-                control={<Checkbox checked={mentorshipTypes.includes("mentee")} onChange={handleCheckboxChange} name="mentee" />}
-                label="Become a mentor"
-              />
-            </FormGroup>
-          </FormControl>
-        </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormControl required component="fieldset">
+              <FormLabel component="legend">What are you looking for? (Check all that apply)</FormLabel>
+              <FormGroup>
+                <FormControlLabel
+                  control={<Checkbox checked={mentorshipTypes.includes("mentor")} onChange={handleCheckboxChange} name="mentor" />}
+                  label="Get matched with a mentor"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={mentorshipTypes.includes("skill")} onChange={handleCheckboxChange} name="skill" />}
+                  label="Learn a skill"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={mentorshipTypes.includes("project")} onChange={handleCheckboxChange} name="project" />}
+                  label="Work on a project"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={mentorshipTypes.includes("mentee")} onChange={handleCheckboxChange} name="mentee" />}
+                  label="Become a mentor"
+                />
+              </FormGroup>
+            </FormControl>
+          </Grid>
 
-        <Grid item xs={12}>
-          <TextField
-            variant="outlined"
-            required
-            fullWidth
-            id="bio"
-            value={bio}
-            label="About you"
-            multiline
-            rows={4}
-          />
-        </Grid>
+          <Grid item xs={12}>
+            <TextField
+              variant="outlined"
+              required
+              fullWidth
+              id="bio"
+              value={bio}
+              label="About you"
+              multiline
+              rows={4}
+            />
+          </Grid>
 
-        <Grid item xs={12}>
-          <Typography variant="h6" gutterBottom>
-            What skills would you like to learn?
+          <Grid item xs={12}>
+            <Typography variant="h6" gutterBottom>
+              What skills would you like to learn?
           </Typography>
-          <ComboBox name="skills-hard" label="Hard Skills" placeholder="Hard Skills" options={data.skills["Top hard"]} onChange={handleComboBoxChange} />
+            <ComboBox name="skills-hard" label="Hard Skills" placeholder="Hard Skills" options={data.skills["Top hard"]} onChange={handleComboBoxChange} />
+          </Grid>
+          <Grid item xs={12}>
+            <ComboBox name="skills-soft" label="Soft Skills" placeholder="Soft Skills" options={data.skills["Top soft"]} onChange={handleComboBoxChange} />
+          </Grid>
+          <Grid item xs={12}>
+            <ComboBox name="skills-tech" label="Tech Skills" placeholder="Teck Skills" options={data.skills["Top tech"]} onChange={handleComboBoxChange} />
+          </Grid>
+          <Grid item xs={12}>
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <ComboBox name="skills-soft" label="Soft Skills" placeholder="Soft Skills" options={data.skills["Top soft"]} onChange={handleComboBoxChange} />
-        </Grid>
-        <Grid item xs={12}>
-          <ComboBox name="skills-tech" label="Tech Skills" placeholder="Teck Skills" options={data.skills["Top tech"]} onChange={handleComboBoxChange} />
-        </Grid>
-        <Grid item xs={12}>
-        </Grid>
-      </Grid>
 
 
-      {/* <Container>
+        {/* <Container>
         <code>{JSON.stringify(state, "", 2)}</code>
       </Container> */}
 
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        color="primary"
-        className={classes.submit}
-        onClick={handleSubmit}
-      >Save</Button>
-    </Container>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          onClick={handleSubmit}
+        >Save</Button>
+      </Container>
+    </div>
 
   );
 };

@@ -43,7 +43,6 @@ export function Signup({ firebase, history, isAuthenticated, handleSuccess, hand
   const handleSubmit = () => {
     firebase.doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
-        console.log(authUser)
         handleSuccess({ authUser });
         history.push("/profile");
       })
@@ -126,7 +125,7 @@ export function Signup({ firebase, history, isAuthenticated, handleSuccess, hand
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.user?.isAuthenticated,
+  isAuthenticated: !!state.user?.isAuthenticated,
 });
 
 const mapDispatchToProps = {

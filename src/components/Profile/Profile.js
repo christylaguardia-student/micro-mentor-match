@@ -80,17 +80,12 @@ export const Profile = ({ firebase, handleSuccess, handleError }) => {
     setState({ ...state, [name]: value });
   };
 
+  // TODO;
   const handleSubmit = () => {
     const uid = '124';
     firebase.user(uid).set(state)
-      .then(authUser => {
-        console.log(authUser)
-        handleSuccess({ authUser });
-      })
-      .catch(error => {
-        console.log({ error });
-        handleError({ error });
-      });;
+      .then(authUser => handleSuccess({ authUser }))
+      .catch(error => handleError({ error }));
   }
 
   return (
@@ -213,7 +208,7 @@ export const Profile = ({ firebase, handleSuccess, handleError }) => {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.user?.isAuthenticated,
+  isAuthenticated: !!state.user?.isAuthenticated,
 });
 
 const mapDispatchToProps = {

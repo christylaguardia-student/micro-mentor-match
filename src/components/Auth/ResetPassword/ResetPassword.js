@@ -42,7 +42,6 @@ export function ResetPassword({ firebase, history, isAuthenticated, handleSucces
   const handleSubmit = () => {
     firebase.doPasswordReset(email, password)
       .then(authUser => {
-        console.log(authUser)
         handleSuccess({ authUser });
         history.push("/profile");
       })
@@ -98,7 +97,7 @@ export function ResetPassword({ firebase, history, isAuthenticated, handleSucces
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.user?.isAuthenticated,
+  isAuthenticated: !!state.user?.isAuthenticated,
 });
 
 const mapDispatchToProps = {

@@ -21,6 +21,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
 import { DrawerMenu } from './DrawerMenu';
+import SignOutButton from '../Auth/SignOutButton';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -185,6 +186,7 @@ export function Navigation({ isAuthenticated }) {
         >
           <AccountCircle />
         </IconButton>
+        <SignOutButton />
       </div>
       <div className={classes.end}>
         <IconButton
@@ -209,14 +211,14 @@ export function Navigation({ isAuthenticated }) {
         About
       </Button>
       <Button component={Link} to="/login" color="inherit">
-        Login
+        Sign In
       </Button>
     </Toolbar>
   );
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar color="transparent" position="static">
         {isAuthenticated ? loggedInMenu : loggedOutMenu}
       </AppBar>
       {isAuthenticated && renderMobileMenu}
@@ -227,7 +229,7 @@ export function Navigation({ isAuthenticated }) {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.user?.isAuthenticated,
+  isAuthenticated: !!state.user?.isAuthenticated,
 });
 
 export default compose(

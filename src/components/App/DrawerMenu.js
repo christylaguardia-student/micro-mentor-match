@@ -152,7 +152,7 @@ export function DrawerMenu({ open, handleDrawerClose }) {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.user?.isAuthenticated,
+  isAuthenticated: !!state.user?.isAuthenticated,
 });
 
 export default compose(

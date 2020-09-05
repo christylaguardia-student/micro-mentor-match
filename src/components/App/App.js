@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-// import { connect } from "react-redux";
 import { compose } from 'recompose';
 
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -10,7 +9,7 @@ import Navigation from "./Navigation";
 import Views from "./Views";
 import SnackbarErrors from "./SnackbarErrors";
 
-import { loginSuccess, addError } from '../../store/actions';
+import { loginSuccess } from '../../store/actions';
 import { withFirebase } from '../Firebase';
 
 import theme from "./theme";
@@ -42,12 +41,6 @@ export const App = ({ firebase, user }) => {
   );
 };
 
-// const mapStateToProps = state => ({
-//   isAuthenticated: state.user?.isAuthenticated,
-//   user: state.user,
-// });
-
 export default compose(
   withFirebase,
-  // connect(mapStateToProps, null)
 )(App);

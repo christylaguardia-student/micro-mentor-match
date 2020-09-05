@@ -122,7 +122,7 @@ export const Search = ({ firebase, handleSuccess, handleError }) => {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.user?.isAuthenticated,
+  isAuthenticated: !!state.user?.isAuthenticated,
 });
 
 const mapDispatchToProps = {

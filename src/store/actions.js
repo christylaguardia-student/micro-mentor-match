@@ -1,5 +1,6 @@
 import {
   ERROR_ADD,
+  LOGOUT,
   LOGIN_SUCCESS,
   CREATE_USER_SUCCESS,
   UPDATE_USER_SUCCESS,
@@ -25,3 +26,7 @@ export const updateUserSuccess = ({ authUser }) => dispatch => {
 export const getUsers = ({ users }) => dispatch => {
   dispatch({ type: GET_USERS, payload: users });
 };
+
+export const logout = () => dispatch => {
+  dispatch({ type: LOGOUT });
+}

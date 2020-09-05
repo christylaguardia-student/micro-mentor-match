@@ -1,11 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
+import { compose } from 'recompose';
 import clsx from 'clsx';
 
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -32,30 +35,6 @@ const useStyles = makeStyles((theme) => ({
       display: 'block',
     },
   },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   inputRoot: {
     color: 'inherit',
   },
@@ -75,38 +54,9 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
     },
   },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
-  link: {
-    color: "#fff",
-    margin: theme.spacing(1, 1.5),
-  },
 }));
 
-// const NavigationMenuItem = ({ handleClose, name, to }) => {
-//   const classes = useStyles();
-
-//   return (
-//     <MenuItem component={Link} to={to} onClick={handleClose}>
-//       {name}
-//     </MenuItem>
-//   )
-// };
-// const NavigationButton = ({ name, to }) => {
-//   const classes = useStyles();
-
-//   return (
-//     <Button key={name} component={Link} to={to} className={classes.link}>
-//       {name}
-//     </Button>
-//   )
-// };
-
-export function Navigation({ isAuthenticated = true }) {
+export function Navigation({ isAuthenticated }) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -197,74 +147,90 @@ export function Navigation({ isAuthenticated = true }) {
     </Menu>
   );
 
+  const loggedInMenu = (
+    <Toolbar>
+      <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        onClick={handleDrawerOpen}
+        edge="start"
+        className={clsx(classes.menuButton, open && classes.hide)}
+      >
+        <MenuIcon />
+      </IconButton>
+      <Typography className={classes.title} variant="h6" noWrap>
+        Micro-Mentor
+      </Typography>
+
+      <div className={classes.grow} />
+
+      <div className={classes.sectionDesktop}>
+        <IconButton component={Link} to="/messages" aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={4} color="secondary">
+            <MailIcon />
+          </Badge>
+        </IconButton>
+        <IconButton component={Link} to="/notifications" aria-label="show 17 new notifications" color="inherit">
+          <Badge badgeContent={17} color="secondary">
+            <NotificationsIcon />
+          </Badge>
+        </IconButton>
+        <IconButton
+          edge="end"
+          aria-label="account of current user"
+          aria-controls={menuId}
+          aria-haspopup="true"
+          onClick={handleProfileMenuOpen}
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+      </div>
+      <div className={classes.end}>
+        <IconButton
+          aria-label="show more"
+          aria-controls={mobileMenuId}
+          aria-haspopup="true"
+          onClick={handleMobileMenuOpen}
+          color="inherit"
+        >
+          <MoreIcon />
+        </IconButton>
+      </div>
+    </Toolbar>
+  );
+
+  const loggedOutMenu = (
+    <Toolbar className={classes.grow}>
+      <Typography to="/" className={classes.grow} variant="h6" noWrap>
+        Micro-Mentor
+      </Typography>
+      <Button component={Link} to="/" color="inherit">
+        About
+      </Button>
+      <Button component={Link} to="/login" color="inherit">
+        Login
+      </Button>
+    </Toolbar>
+  );
+
   return (
     <div className={classes.grow}>
       <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Micro-Mentor
-          </Typography>
-          {/* <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div> */}
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton component={Link} to="/mail" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton component={Link} to="/notifications" aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
+        {isAuthenticated ? loggedInMenu : loggedOutMenu}
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-      <DrawerMenu open={open} handleDrawerClose={handleDrawerClose} />
+      {isAuthenticated && renderMobileMenu}
+      {isAuthenticated && renderMenu}
+      {isAuthenticated && <DrawerMenu open={open} handleDrawerClose={handleDrawerClose} />}
     </div>
   );
 }
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.user?.isAuthenticated,
+});
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, null)
+)(Navigation);

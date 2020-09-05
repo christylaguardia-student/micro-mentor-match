@@ -22,10 +22,12 @@ export function loading(state = false, { type }) {
   }
 }
 
+// TODO: not handling multiple errors ATM
 export function errors(state = null, { type, payload }) {
   switch (type) {
     case ERROR_ADD:
-      return [state, payload];
+      return payload;
+    // return [state, payload];
     case ERROR_REMOVE:
     default:
       return state;

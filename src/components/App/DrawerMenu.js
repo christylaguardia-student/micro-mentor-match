@@ -1,5 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
+import { compose } from 'recompose';
 
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -18,6 +20,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import HelpIcon from '@material-ui/icons/Help';
 import ErrorIcon from '@material-ui/icons/Error';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const drawerWidth = 240;
 
@@ -100,6 +103,7 @@ export function DrawerMenu({ open, handleDrawerClose }) {
       <Divider />
       <List>
         <ListItem button component={Link} to="/profile" onClick={handleDrawerClose}>
+          <ListItemIcon><AccountCircleIcon /></ListItemIcon>
           <ListItemText primary="Profile" />
         </ListItem>
         <ListItem button component={Link} to="/mentorships" onClick={handleDrawerClose}>
@@ -146,3 +150,12 @@ export function DrawerMenu({ open, handleDrawerClose }) {
     </Drawer>
   );
 }
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.user?.isAuthenticated,
+});
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, null)
+)(DrawerMenu);

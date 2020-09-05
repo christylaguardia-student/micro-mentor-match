@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 
 export const Hero = ({ title, subtitle }) => (
   <>
-    <Typography
+    {title && <Typography
       component="h1"
       variant="h2"
       align="center"
@@ -11,9 +11,9 @@ export const Hero = ({ title, subtitle }) => (
       gutterBottom
     >
       {title}
-    </Typography>
-    <Typography variant="h5" align="center" color="textSecondary" paragraph>
+    </Typography>}
+    {subtitle && <Typography variant="h5" align="center" color="textSecondary" paragraph>
       {subtitle}
-    </Typography>
+    </Typography>}
   </>
 );

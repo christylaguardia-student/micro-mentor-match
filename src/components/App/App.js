@@ -11,10 +11,10 @@ import { Navigation } from "./Navigation";
 import Routes from "./Routes";
 
 const useStyles = makeStyles((theme) => ({
-  content: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
+  // content: {
+  //   backgroundColor: theme.palette.background.paper,
+  //   padding: theme.spacing(8, 0, 6),
+  // },
   footer: {
     backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(6),
@@ -32,9 +32,9 @@ export const App = ({ firebase, isAuthenticated, user }) => {
           <Navigation isAuthenticated={isAuthenticated} handleLogout={firebase.doSignOut} />
         </header>
         <main>
-          <div className={classes.content}>
-            <Routes />
-          </div>
+          <Routes />
+          {/* <div className={classes.content}>
+          </div> */}
         </main>
         <footer className={classes.footer}></footer>
       </Router>

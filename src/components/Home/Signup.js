@@ -35,9 +35,9 @@ export const Signup = ({ firebase, createUserSuccess, addError }) => {
     setState({ ...state, [event.target.name]: event.target.value });
   };
 
-  const handleCheckboxChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
+  // const handleCheckboxChange = (event) => {
+  //   setState({ ...state, [event.target.name]: event.target.checked });
+  // };
 
   const handleSubmit = () => {
     firebase.doCreateUserWithEmailAndPassword(email, password)

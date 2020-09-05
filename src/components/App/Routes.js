@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import { withAuthentication } from '../Session';
 import Home from "../Home";
@@ -38,7 +38,8 @@ export const ROUTES = {
 // }
 
 // TODO: setup auth redirects
-export const Routes = ({ isAuthenticated }) => (
+// export const Routes = ({ isAuthenticated }) => (
+export const Routes = () => (
   <Switch>
     <Route exact path={ROUTES.HOME}>
       <Home />

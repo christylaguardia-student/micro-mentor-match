@@ -35,45 +35,48 @@ function a11yProps(index) {
 
 export const Search = ({ firebase, handleSuccess, handleError }) => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(1);
+  const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const { mentors, mentorships } = Object.entries(mentorshipsData)
-    .filter(([, mentorship]) => mentorship.menteeId !== null || mentorship.mentorId !== null)
-    .reduce((open, [id, mentorship]) => {
+  const mentorshipDataArray = Object.entries(mentorshipsData);
+
+  const mentorships = mentorshipDataArray
+    .filter(([, mentorship]) => mentorship.menteeId !== null && mentorship.mentorId === null)
+    .map(([id, mentorship]) => ({ id, mentee: usersData[mentorship.menteeId], ...mentorship }));
+
+  const mentorsReduced = mentorshipDataArray
+    .filter(([, mentorship]) => mentorship.menteeId === null && mentorship.mentorId !== null)
+    .reduce((reducedList, [id, mentorship]) => {
       const mentorId = mentorship.mentorId;
-      const menteeId = mentorship.menteeId;
 
-      // Mentees seeking mentors
-      if (mentorId) {
-        const mentor = usersData[mentorId];
-        if (mentor) {
-          open.mentors.push({ id, mentor, ...mentorship });
+      if (reducedList.hasOwnProperty(mentorId)) {
+        reducedList[mentorId] = {
+          ...reducedList[mentorId],
+          mentorships: {
+            ...reducedList[mentorId].mentorships,
+            [id]: mentorship,
+          }
         }
-        return open;
+      } else {
+        reducedList[mentorId] = {
+          mentor: usersData[mentorId],
+          mentorships: {
+            [id]: mentorship,
+          }
+        }
       }
 
-      // Mentors seeking mentees
-      if (menteeId) {
-        const mentee = usersData[menteeId];
-        if (mentee) {
-          open.mentorships.push({ id, mentee, ...mentorship });
-        }
-        return open;
-      }
+      return reducedList;
+    }, {})
+  const mentors = Object.entries(mentorsReduced);
 
-      return open;
-    }, { mentors: [], mentorships: [] })
 
   const questions = Object.entries(questionsData)
     .filter(([, question]) => !question.answered)
-    // .map(([id, question]) => ({ id, ...question }))
     .reduce((questionsList, [id, question]) => {
-      // const { mentorship } = data;
-      // console.log({ id, data, mentorship })
       const userId = question.userId;
 
       // Mentees seeking mentors

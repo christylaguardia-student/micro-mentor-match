@@ -22,9 +22,9 @@ export const MentorList = ({ mentors }) => {
   // <Grid item xs={12} sm={8} md={8} lg={4} key={data.id}>
   return (
     <Grid container direction="row" justify="center" alignItems="flex-start" className={classes.root} spacing={2}>
-      {mentors.map(data =>
-        <Grid item key={data.id}>
-          <MentorCard {...data} />
+      {mentors.map(([id, data]) =>
+        <Grid item key={id}>
+          <MentorCard id={id} {...data} />
         </Grid>
       )}
     </Grid>

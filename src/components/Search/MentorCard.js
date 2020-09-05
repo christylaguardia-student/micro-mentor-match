@@ -10,13 +10,16 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
+import Button from '@material-ui/core/Button';
 
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
-import PanToolIcon from '@material-ui/icons/PanTool';
+
+// import { MentorshipDetailCard } from './MentorshipDetailCard';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,9 +39,6 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
-  hand: {
-    marginLeft: 'auto',
-  },
   text: {
     width: '200px', // dummy width to show the elipsis
   },
@@ -52,11 +52,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const MentorCard = ({
-  category,
-  type,
-  length,
-  frequency,
-  description,
   mentor: {
     firstName,
     lastName,
@@ -68,17 +63,13 @@ export const MentorCard = ({
     linkedIn,
     portfolio,
     categories,
-  }
+  },
+  // mentorships
 }) => {
   const classes = useStyles();
   const fullName = `${firstName} ${lastName}`;
   const [expanded, setExpanded] = React.useState(false);
-
-  const typeDescriptions = {
-    'skill': 'teach a',
-    'project': 'help with a',
-    'coffee': 'chat over',
-  }
+  // const mentorshipsList = Object.entries(mentorships);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -100,21 +91,34 @@ export const MentorCard = ({
         )}
       />
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        {linkedIn && <IconButton aria-label="LinkedIn">
-          <LinkedInIcon />
-        </IconButton>}
-        {portfolio && <IconButton aria-label="LinkedIn">
-          <MenuBookIcon />
-        </IconButton>}
-        <IconButton aria-label="chat">
-          <ChatBubbleIcon />
-        </IconButton>
-        <IconButton aria-label="request">
-          <PanToolIcon />
-        </IconButton>
+        <Tooltip title="Add to favorites">
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+        </Tooltip>
+
+        {linkedIn && (
+          <Tooltip title="Linked">
+            <IconButton aria-label="LinkedIn">
+              <LinkedInIcon />
+            </IconButton>
+          </Tooltip>
+        )}
+
+        {portfolio && (
+          <Tooltip title="Portfolio">
+            <IconButton aria-label="Portfolios">
+              <MenuBookIcon />
+            </IconButton>
+          </Tooltip>
+        )}
+
+        <Tooltip title="Chat">
+          <IconButton aria-label="chat">
+            <ChatBubbleIcon />
+          </IconButton>
+        </Tooltip>
+
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -144,10 +148,18 @@ export const MentorCard = ({
               <Typography className={classes.paragraph} variant="body2" component="p" gutterBottom>N/A</Typography>
             )}
 
-          <Typography className={classes.heading} paragraph>Mentorship Opportunity</Typography>
-          <Typography className={classes.paragraph} variant="body2" component="p" gutterBottom>
-            I'm available to {typeDescriptions[type]} <strong>{category} {type}</strong> and can meet for {frequency === "one" ? "a" : <strong>{frequency}</strong>} <strong>{length}</strong> session{frequency !== "one" && "s"}.
-        </Typography>
+          {/* 
+          <Typography className={classes.heading} paragraph>Mentorship Opportunities</Typography>
+          {mentorshipsList === 0 ? (
+            <Typography className={classes.paragraph} variant="body2" component="p" gutterBottom>None</Typography>
+          ) : mentorshipsList.map(([id, mentorship]) => (
+            <MentorshipDetailCard id={id} {...mentorship} />
+          ))} */}
+
+          <Button variant="contained" color="primary">
+            View Mentorship Opportunities
+          </Button>
+
         </CardContent>
       </Collapse>
     </Card>

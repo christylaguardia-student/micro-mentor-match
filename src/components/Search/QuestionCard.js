@@ -20,7 +20,7 @@ import { CommentCard } from './CommentCard';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    padding: theme.spacing(2),
+    padding: theme.spacing(0, 1),
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -69,7 +69,7 @@ export const QuestionCard = ({
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label={fullName} className={classes.avatar} src={avatar} />
+          <Avatar aria-label={fullName} src={avatar} />
         }
         title={fullName}
         subheader={`${jobTitle}@${companyName}`}

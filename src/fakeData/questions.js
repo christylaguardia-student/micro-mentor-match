@@ -1,7 +1,6 @@
 var faker = require('faker');
 var helpers = require('./helpers');
 var users = require('./generated/users.json');
-var categories = require('./categories.json');
 
 function createComments(userIds) {
   var count = helpers.getRandomInt(10);
@@ -34,11 +33,10 @@ function createQuestions(limit) {
   for (let i = 0; i < limit; i++) {
     var questionId = faker.random.number();
     var userIndex = helpers.getRandomInt(userIds.length);
-    var categoryIndex = helpers.getRandomInt(categories.length);
 
     var question = {
       userId: userIds[userIndex],
-      category: categories[categoryIndex],
+      category: helpers.createCategory(),
       question: faker.lorem.sentences().replace('.', '?'),
       answered: helpers.getRandomBoolean(),
       comments: createComments(userIds) // TODO: should comments not be nested?

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 
 import { MentorshipCard } from './MentorshipCard';
 
@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(6, 0),
   },
+  card: {
+    padding: theme.spacing(2, 0),
+  }
 }));
 
 export const MentorshipList = ({ mentorships }) => {
@@ -20,12 +23,12 @@ export const MentorshipList = ({ mentorships }) => {
   }
 
   return (
-    <Grid container direction="row" justify="center" alignItems="flex-start" className={classes.root} spacing={2}>
+    <Container maxWidth="md" className={classes.root}>
       {mentorships.map(data =>
-        <Grid item key={data.id}>
+        <div className={classes.card}>
           <MentorshipCard {...data} />
-        </Grid>
+        </div>
       )}
-    </Grid>
+    </Container>
   );
 };

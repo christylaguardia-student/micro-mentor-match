@@ -39,7 +39,7 @@ export function user(state = {}, { type, payload }) {
     case SIGN_IN_SUCCESS:
     case CREATE_USER_SUCCESS:
     case UPDATE_USER_SUCCESS:
-      return { ...state, isAuthenticated: true, auth: payload };
+      return { ...state, isAuthenticated: true, ...payload };
     case FETCHED_USER:
       return { ...state, data: payload };
     case SIGN_OUT:

@@ -12,13 +12,15 @@ export const addError = ({ error }) => dispatch => {
 };
 
 export const signInSuccess = ({ authUser }) => dispatch => {
-  dispatch({ type: SIGN_IN_SUCCESS, payload: authUser }); // or just credential?
+  dispatch({ type: SIGN_IN_SUCCESS, payload: authUser?.user }); // or just credential?
 };
 
+// TODO: confirm the authUser is the user obj
 export const createUserSuccess = ({ authUser }) => dispatch => {
   dispatch({ type: CREATE_USER_SUCCESS, payload: authUser });
 };
 
+// TODO: confirm the authUser is the user obj
 export const updateUserSuccess = ({ authUser }) => dispatch => {
   dispatch({ type: UPDATE_USER_SUCCESS, payload: authUser });
 };

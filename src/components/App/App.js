@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { connect } from "react-redux";
+import { BrowserRouter as Router, Link, Redirect, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -9,17 +10,15 @@ import Navigation from "./Navigation";
 import Views from "./Views";
 import SnackbarErrors from "./SnackbarErrors";
 
-import { signInSuccess } from '../../store/actions';
+import { signInSuccess, addError } from '../../store/actions';
 import { withFirebase } from '../Firebase';
 
 import theme from "./theme";
 
-export const App = ({ firebase, user }) => {
+export const App = ({ firebase, handleSuccess, handleError }) => {
   React.useEffect(() => {
     firebase.auth.onAuthStateChanged(authUser => {
-      authUser
-        ? signInSuccess({ authUser })
-        : signInSuccess({ authUser: null });
+      handleSuccess({ authUser: authUser ?? null });
     });
   })
 
@@ -41,6 +40,12 @@ export const App = ({ firebase, user }) => {
   );
 };
 
+const mapDispatchToProps = {
+  handleSuccess: signInSuccess,
+  handleError: addError
+}
+
 export default compose(
   withFirebase,
+  connect(null, mapDispatchToProps)
 )(App);

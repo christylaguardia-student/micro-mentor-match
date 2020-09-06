@@ -31,7 +31,7 @@ export function SignIn({ firebase, history, isAuthenticated, handleSuccess, hand
   const classes = useStyles();
 
   const [state, setState] = React.useState({
-    email: 'christinelaguardia@gmail.com',
+    email: '',
     password: '',
   });
   const { email, password } = state;
@@ -51,6 +51,7 @@ export function SignIn({ firebase, history, isAuthenticated, handleSuccess, hand
       });
   }
 
+  // TODO: is this needed?
   if (isAuthenticated) {
     return <Redirect to='/profile' />;
   }

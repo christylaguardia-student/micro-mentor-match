@@ -12,7 +12,15 @@ export const addError = ({ error }) => dispatch => {
 };
 
 export const signInSuccess = ({ authUser }) => dispatch => {
-  dispatch({ type: SIGN_IN_SUCCESS, payload: authUser?.user }); // or just credential?
+  let user = null;
+
+  if (authUser.hasOwnProperty('user')) {
+    user = authUser.user;
+  } else if (!!authUser) {
+    user = authUser;
+  }
+
+  dispatch({ type: SIGN_IN_SUCCESS, payload: user });
 };
 
 // TODO: confirm the authUser is the user obj

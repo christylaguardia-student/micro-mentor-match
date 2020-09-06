@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Link, Redirect, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { compose } from 'recompose';
 
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -18,7 +18,7 @@ import theme from "./theme";
 export const App = ({ firebase, handleSuccess, handleError }) => {
   React.useEffect(() => {
     firebase.auth.onAuthStateChanged(authUser => {
-      handleSuccess({ authUser: authUser ?? null });
+      handleSuccess({ authUser });
     });
   })
 

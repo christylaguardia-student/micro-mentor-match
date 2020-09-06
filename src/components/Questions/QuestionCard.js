@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
   },
   heading: {
     ...theme.typography.button,
-    backgroundColor: theme.palette.background.paper,
   },
 }));
 

@@ -3,6 +3,8 @@ import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
 import { compose } from 'recompose';
 
+import Alert from '@material-ui/lab/Alert';
+
 import Hero from "../Hero";
 import Home from "../Home";
 import SignIn from "../Auth/SignIn";
@@ -25,7 +27,12 @@ export const PrivateRoute = ({ isAuthenticated, component: Component, ...rest })
 
 export function Views({ isAuthenticated }) {
   const renderPlaceholderRoute = name => {
-    return <Route key={name} path={`/${name}`} component={() => <Hero title={name} />} />
+    return <Route key={name} path={`/${name}`} component={() => (
+      <div>
+        <Alert severity="warning">This page is not built yet!</Alert>
+        <Hero title={name} />
+      </div>
+    )} />
   };
   return (
     <>

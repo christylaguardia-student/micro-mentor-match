@@ -1,7 +1,7 @@
 import {
   ERROR_ADD,
-  LOGOUT,
-  LOGIN_SUCCESS,
+  SIGN_OUT,
+  SIGN_IN_SUCCESS,
   CREATE_USER_SUCCESS,
   UPDATE_USER_SUCCESS,
   GET_USERS,
@@ -11,8 +11,8 @@ export const addError = ({ error }) => dispatch => {
   dispatch({ type: ERROR_ADD, payload: error });
 };
 
-export const loginSuccess = ({ authUser }) => dispatch => {
-  dispatch({ type: LOGIN_SUCCESS, payload: authUser }); // or just credential?
+export const signInSuccess = ({ authUser }) => dispatch => {
+  dispatch({ type: SIGN_IN_SUCCESS, payload: authUser }); // or just credential?
 };
 
 export const createUserSuccess = ({ authUser }) => dispatch => {
@@ -27,6 +27,6 @@ export const getUsers = ({ users }) => dispatch => {
   dispatch({ type: GET_USERS, payload: users });
 };
 
-export const logout = () => dispatch => {
-  dispatch({ type: LOGOUT });
+export const signOut = () => dispatch => {
+  dispatch({ type: SIGN_OUT });
 }

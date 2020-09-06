@@ -28,8 +28,8 @@ export const Home = () => {
           subtitle="Get matched to a mentor for a short term and skill focused mentorships. Join to be a mentor based on skills you have to offer."
         />
         <div className={classes.container}>
-          <Button component={Link} to="/signup" variant="contained" color="primary" size="large" >
-            Signup
+          <Button component={Link} to="/sign-up" variant="contained" color="primary" size="large" >
+            Sign Up
           </Button>
         </div>
       </Container>

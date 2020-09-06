@@ -14,7 +14,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import PanToolIcon from '@material-ui/icons/PanTool';
 
-import { MentorshipDetailCard } from './MentorshipDetailCard';
+// import { MentorshipDetailCard } from './MentorshipDetailCard';
 import { MentorshipChips } from './MentorshipChips';
 
 const useStyles = makeStyles((theme) => ({
@@ -52,22 +52,22 @@ export const MentorshipCard = ({
     firstName,
     lastName,
     avatar,
-    gender,
+    // gender,
     jobTitle,
     companyName,
-    bio,
+    // bio,
   }
 }) => {
   const classes = useStyles();
   const fullName = `${firstName} ${lastName}`;
-  const [expanded, setExpanded] = React.useState(false);
+  // const [expanded, setExpanded] = React.useState(false);
   const subheader = type === "coffee"
     ? `${length} coffee chat`
     : `${frequency} ${length} session${frequency === "one" ? "" : "s"}`;
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+  // const handleExpandClick = () => {
+  //   setExpanded(!expanded);
+  // };
 
   return (
     <Card className={classes.root}>

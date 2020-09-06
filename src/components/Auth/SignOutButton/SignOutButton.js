@@ -4,13 +4,13 @@ import { compose } from 'recompose';
 
 import Button from '@material-ui/core/Button';
 
-import { logout } from '../../../store/actions'
+import { signOut } from '../../../store/actions'
 import { withFirebase } from '../../Firebase';
 
-const SignOutButton = ({ firebase, handleLogout }) => {
+const SignOutButton = ({ firebase, handleSignOut }) => {
   const handleClick = () => {
     firebase.doSignOut();
-    handleLogout();
+    handleSignOut();
   }
 
   return (
@@ -21,7 +21,7 @@ const SignOutButton = ({ firebase, handleLogout }) => {
 };
 
 const mapDispatchToProps = {
-  handleLogout: logout,
+  handleSignOut: signOut,
 }
 
 export default compose(

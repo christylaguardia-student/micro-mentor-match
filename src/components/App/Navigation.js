@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import { compose } from 'recompose';
 import clsx from 'clsx';
@@ -210,7 +210,7 @@ export function Navigation({ isAuthenticated }) {
       <Button component={Link} to="/" color="inherit">
         About
       </Button>
-      <Button component={Link} to="/login" color="inherit">
+      <Button component={Link} to="/sign-in" color="inherit">
         Sign In
       </Button>
     </Toolbar>

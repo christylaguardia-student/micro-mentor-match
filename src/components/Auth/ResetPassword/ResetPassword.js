@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Hero from '../../Hero';
-import { loginSuccess, addError } from '../../../store/actions';
+import { signInSuccess, addError } from '../../../store/actions';
 import { withFirebase } from '../../Firebase/context';
 
 const useStyles = makeStyles((theme) => ({
@@ -101,7 +101,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  handleSuccess: loginSuccess,
+  handleSuccess: signInSuccess,
   handleError: addError
 }
 

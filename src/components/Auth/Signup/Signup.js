@@ -11,7 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import MuiLink from "@material-ui/core/Link";
 
 import Hero from '../../Hero';
-import { loginSuccess, addError } from '../../../store/actions';
+import { signInSuccess, addError } from '../../../store/actions';
 import { withFirebase } from '../../Firebase/context';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function Signup({ firebase, history, isAuthenticated, handleSuccess, handleError }) {
+export function SignUp({ firebase, history, isAuthenticated, handleSuccess, handleError }) {
   const classes = useStyles();
 
   const [state, setState] = React.useState({
@@ -113,7 +113,7 @@ export function Signup({ firebase, history, isAuthenticated, handleSuccess, hand
               </MuiLink>
             </Grid>
             <Grid item>
-              <MuiLink component={Link} to="/login" variant="body2">
+              <MuiLink component={Link} to="/sign-in" variant="body2">
                 {"Already have an account? Sign In"}
               </MuiLink>
             </Grid>
@@ -129,7 +129,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  handleSuccess: loginSuccess,
+  handleSuccess: signInSuccess,
   handleError: addError
 }
 
@@ -137,4 +137,4 @@ export default compose(
   withRouter,
   withFirebase,
   connect(mapStateToProps, mapDispatchToProps)
-)(Signup);
+)(SignUp);

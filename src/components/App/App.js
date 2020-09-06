@@ -9,7 +9,7 @@ import Navigation from "./Navigation";
 import Views from "./Views";
 import SnackbarErrors from "./SnackbarErrors";
 
-import { loginSuccess } from '../../store/actions';
+import { signInSuccess } from '../../store/actions';
 import { withFirebase } from '../Firebase';
 
 import theme from "./theme";
@@ -18,8 +18,8 @@ export const App = ({ firebase, user }) => {
   React.useEffect(() => {
     firebase.auth.onAuthStateChanged(authUser => {
       authUser
-        ? loginSuccess({ authUser })
-        : loginSuccess({ authUser: null });
+        ? signInSuccess({ authUser })
+        : signInSuccess({ authUser: null });
     });
   })
 
@@ -28,7 +28,7 @@ export const App = ({ firebase, user }) => {
       <CssBaseline />
       <Router>
         <header>
-          <Navigation handleLogout={firebase.doSignOut} />
+          <Navigation handleSignOut={firebase.doSignOut} />
         </header>
         <main>
           <ThemeProvider theme={theme}>

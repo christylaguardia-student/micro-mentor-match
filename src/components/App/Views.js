@@ -5,8 +5,8 @@ import { compose } from 'recompose';
 
 import Hero from "../Hero";
 import Home from "../Home";
-import Login from "../Auth/Login";
-import Signup from "../Auth/Signup";
+import SignIn from "../Auth/SignIn";
+import SignUp from "../Auth/SignUp";
 import ResetPassword from "../Auth/ResetPassword";
 import Profile from "../Profile";
 import Mentorships from "../Mentorships";
@@ -18,7 +18,7 @@ export const PrivateRoute = ({ isAuthenticated, component: Component, ...rest })
   <Route {...rest}
     render={props => isAuthenticated
       ? <Component {...props} />
-      : <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
+      : <Redirect to={{ pathname: "/sign-in", state: { from: props.location } }} />
     }
   />
 );
@@ -31,8 +31,8 @@ export function Views({ isAuthenticated }) {
     <>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route path="/sign-in" component={SignIn} />
+        <Route path="/sign-up" component={SignUp} />
         <Route path="/reset-password" component={ResetPassword} />
 
         <PrivateRoute isAuthenticated={isAuthenticated} path="/profile" component={Profile} />
